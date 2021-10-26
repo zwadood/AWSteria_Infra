@@ -105,6 +105,8 @@ for_AWSF1_HDK:
 # RTL from bsc library
 	cp -p  $(BLUESPEC_HOME)/lib/Verilog/FIFO2.v        cl_AWSteria_TestApp/design/
 	cp -p  $(BLUESPEC_HOME)/lib/Verilog/SizedFIFO.v    cl_AWSteria_TestApp/design/
+	cp -f  $(AWSTERIA_INFRA_REPO)/TestApp_DRM/HW/mkDRM.v		cl_AWSteria_TestApp/design/
+    cp -f  $(AWSTERIA_INFRA_REPO)/TestApp_DRM/HW/ip_activate.v	cl_AWSteria_TestApp/design/
 	@echo "INFO: aws-fpga HDK custom-logic dir is ready: cl_AWSteria_TestApp/"
 
 # ================================================================
