@@ -39,7 +39,7 @@ SRCS_C += $(AWSTERIA_INFRA_REPO)/Platform_VCU118/Host/AWSteria_Host_lib.c
 
 # ================================================================
 
-CFLAGS += -std=gnu11 -g -Wall -Werror -laccelrize_drmc -lpthreads
+CFLAGS += -std=gnu11 -g -Wall -Werror -pthread -laccelize_drmc
 
 CFLAGS += -D PLATFORM_VCU118
 
