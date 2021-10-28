@@ -44,9 +44,9 @@ if { [info exists ::env(DRM_HDK_VCU118)] } {
     read_verilog -sv [glob $path_to_drm_hdk/controller/rtl/core/*.sv]
     read_verilog -sv [glob $path_to_drm_hdk/controller/rtl/syn/*.sv]
     read_vhdl [ glob $path_to_drm_hdk/common/vhdl/xilinx/*.vhdl ] -library drm_library
-    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/core/*.vhdl ] -library drm_library
-    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/syn/*.vhdl ] -library drm_library
-    read_verilog -sv [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/syn/*.sv ]
+    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/core/*.vhdl ] -library drm_library
+    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/syn/*.vhdl ] -library drm_library
+    read_verilog -sv [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/syn/*.sv ]
 }
 
 # Project source RTL + a bit of boilerplate

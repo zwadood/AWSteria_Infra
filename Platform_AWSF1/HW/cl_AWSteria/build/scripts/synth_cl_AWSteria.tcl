@@ -31,6 +31,7 @@ source $HDK_SHELL_DIR/build/scripts/aws_gen_clk_constraints.tcl
 #############################
 ## Read design files
 #############################
+
 if { [info exists ::env(DRM_HDK_AWS)] } {
     set path_to_drm_hdk $::env(DRM_HDK_AWS)
     read_vhdl [glob $path_to_drm_hdk/common/vhdl/xilinx/*.vhdl ] -library drm_library
@@ -38,10 +39,11 @@ if { [info exists ::env(DRM_HDK_AWS)] } {
     read_verilog -sv [glob $path_to_drm_hdk/controller/rtl/core/*.sv]
     read_verilog -sv [glob $path_to_drm_hdk/controller/rtl/syn/*.sv]
     read_vhdl [ glob $path_to_drm_hdk/common/vhdl/xilinx/*.vhdl ] -library drm_library
-    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/core/*.vhdl ] -library drm_library
-    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/syn/*.vhdl ] -library drm_library
-    read_verilog -sv [ glob $path_to_drm_hdk/bluespec.com_AWSteria_testapp_1.0.0/syn/*.sv ]
+    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/core/*.vhdl ] -library drm_library
+    read_vhdl [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/syn/*.vhdl ] -library drm_library
+    read_verilog -sv [ glob $path_to_drm_hdk/bluespec.com_awsteria_testapp_1.0.0/syn/*.sv ]
 }
+
 #Convenience to set the root of the RTL directory
 set ENC_SRC_DIR $CL_DIR/build/src_post_encryption
 
