@@ -108,7 +108,7 @@ endfunction
 typedef AXI4_Fabric_IFC #(2,       // num M ports
 			  N_DDRs,  // num S ports
 			  16,      // wd_id
-			  64,      // wd_addr
+			  64,      // wd_addr   
 			  512,     // wd_data
 			  0)
         AXI4_16_64_512_0_Fabric_2_N_IFC;
@@ -130,7 +130,7 @@ Bit #(32) adapter_addr_min = 'h_0000_0000;    // 0
 Bit #(32) adapter_addr_max = 'h_000F_FFFF;    // 1 MB
 
 Bit #(32) drm_addr_min     = 'h_0010_0000;    // 1 MB
-Bit #(32) drm_addr_max     = 'h_0010_3FFF;    // 1 MB + 16 KB
+Bit #(32) drm_addr_max     = 'h_0010_FFFF;    // 1 MB + 64 KB
 
 
 function Tuple2 #(Bool, Bit #(1))  fn_addr_to_AXI4L_target_num (Bit #(32) addr);
