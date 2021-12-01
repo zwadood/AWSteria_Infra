@@ -44,7 +44,7 @@ import AWSteria_HW     :: *;
 // Instantiates the SoC.
 // Instantiates a memory model.
 
-typedef enum { STATE_CONNECTING, STATE_CONNECTED, STATE_RUNNING } State
+typedef enum { STATE_START, STATE_LISTEN, STATE_ACCEPT, STATE_RUNNING } State
 deriving (Eq, Bits, FShow);
 
 (* synthesize *)
@@ -53,7 +53,7 @@ module mkTop_HW_Side (Empty) ;
    // 0: quiet; 1: rules
    Integer verbosity = 0;
 
-   Reg #(State) rg_state <- mkReg (STATE_CONNECTING);
+   Reg #(State) rg_state <- mkReg (STATE_START);
 
    // The top-level of the AWSteria design
    AWSteria_HW_IFC #(AXI4_Slave_IFC #(16, 64, 512, 0),
@@ -88,22 +88,32 @@ module mkTop_HW_Side (Empty) ;
    // ================================================================
    // BEHAVIOR: start up
 
-   rule rl_connecting (rg_state == STATE_CONNECTING);
+   rule rl_start (rg_state == STATE_START);
       $display ("================================================================");
-      $display ("Bluespec AWSteria simulation v2.0");
+      $display ("Bluespec AWSteria_Infra simulation v2.1");
       $display ("Copyright (c) 2020-2021 Bluespec, Inc. All Rights Reserved.");
       $display ("================================================================");
 
-      // Open connection to remote host (host is client, we are server)
-      c_host_connect (default_tcp_port);
-      rg_state <= STATE_CONNECTED;
+      rg_state <= STATE_LISTEN;
    endrule
 
-   rule rl_start_when_connected (rg_state == STATE_CONNECTED);
+   rule rl_listen (rg_state == STATE_LISTEN);
+      $display ("INFO: Listening for connection from host-side on TCP port %0d",
+		default_tcp_port);
+      $display ("    (%0d: %m.rl_listen)", cur_cycle);
+      c_host_listen (default_tcp_port);
+      rg_state <= STATE_ACCEPT;
+   endrule
 
-      // Any post-connection initialization goes here
-
-      rg_state <= STATE_RUNNING;
+   rule rl_accept (rg_state == STATE_ACCEPT);
+      // $display ("rl_accept: try accept");
+      let success <- c_host_try_accept (?);
+      if (success == 1) begin
+	 $display ("INFO: Accepted connection from host-side on TCP port %0d",
+		   default_tcp_port);
+	 $display ("    (%0d: %m.rl_accept)", cur_cycle);
+	 rg_state <= STATE_RUNNING;
+      end
    endrule
 
    // ================================================================
