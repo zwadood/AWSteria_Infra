@@ -26,3 +26,4 @@ vivado.*
 *.x86_64
 *.hex
 
+.vscode/settings.json
