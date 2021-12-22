@@ -78,8 +78,7 @@ void *AWSteria_Host_init (void)
 	// perror ("Unable to run kernel");
 	// return NULL;
     // }   
-
-    auto dev = xrt::device( "0000:09:00.1");
+    auto dev = xrt::device(DEVICE_BDF);
     auto xclbin_uuid = dev.load_xclbin( "../../HW/testapp.xclbin");
     auto ip = xrt::ip(dev, xclbin_uuid, "mkAWSteria_HW");
 

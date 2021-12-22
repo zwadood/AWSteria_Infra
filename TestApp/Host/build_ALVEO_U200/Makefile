@@ -39,7 +39,7 @@ SRCS_C += $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host/AWSteria_Host_lib.cpp
 
 # ================================================================
 
-CFLAGS += -g -std=c++14 -Wall -lxrt++ -lxrt_coreutil -pthread
+CFLAGS += -g -lstdc++ -Wall -lxrt_coreutil -pthread
 
 CFLAGS += -D Platform_ALVEO_U200
 
@@ -48,7 +48,7 @@ CFLAGS += -I $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host
 CFLAGS += -I $(XILINX_XRT)/include 
 CFLAGS += -L $(XILINX_XRT)/lib 
 
-CC     = g++ $(CFLAGS)
+CC     = clang $(CFLAGS)
 
 EXE    = exe_Host_ALVEO_U200
 
