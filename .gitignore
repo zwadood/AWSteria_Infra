@@ -25,5 +25,9 @@ vivado.*
 *.i*86
 *.x86_64
 *.hex
+*.log
+*.xclbin
 
 .vscode/settings.json
+TestApp_DRM/Host/build_VCU118/conf.json
+TestApp_DRM/Host/build_VCU118/cred.json

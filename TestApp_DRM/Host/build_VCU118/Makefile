@@ -46,7 +46,7 @@ CFLAGS += -D PLATFORM_VCU118
 CFLAGS += -I $(AWSTERIA_INFRA_REPO)/Include_API
 CFLAGS += -I $(AWSTERIA_INFRA_REPO)/Platform_VCU118/Host
 
-CC     = gcc $(CFLAGS)
+CC     = clang $(CFLAGS)
 
 EXE    = exe_Host_VCU118
 

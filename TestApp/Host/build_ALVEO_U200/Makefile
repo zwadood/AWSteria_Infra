@@ -27,7 +27,7 @@ $(info INFO: Making executable $(EXE) for AWSteria TestApp host side on ALVEO_U2
 # ----------------
 # App host side
 
-SRCS_C = $(AWSTERIA_INFRA_REPO)/TestApp/Host/main.c
+SRCS_C = $(AWSTERIA_INFRA_REPO)/TestApp/Host/main.cpp
 
 # ----------------
 # AWSteria infra
@@ -35,20 +35,20 @@ SRCS_C = $(AWSTERIA_INFRA_REPO)/TestApp/Host/main.c
 SRCS_H += $(AWSTERIA_INFRA_REPO)/Include_API/AWSteria_Host_lib.h
 SRCS_H += $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host/AWSteria_Platform.h
 
-SRCS_C += $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host/AWSteria_Host_lib.c
+SRCS_C += $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host/AWSteria_Host_lib.cpp
 
 # ================================================================
 
-CFLAGS += -g -Wall -lxrt_coreutil -pthread
+CFLAGS += -g -std=c++14 -Wall -lxrt++ -lxrt_coreutil -pthread
 
 CFLAGS += -D Platform_ALVEO_U200
 
 CFLAGS += -I $(AWSTERIA_INFRA_REPO)/Include_API 
 CFLAGS += -I $(AWSTERIA_INFRA_REPO)/Platform_ALVEO_U200/Host
 CFLAGS += -I $(XILINX_XRT)/include 
-CFLAGS += -L$(XILINX_XRT)/lib 
+CFLAGS += -L $(XILINX_XRT)/lib 
 
-CC     = clang $(CFLAGS)
+CC     = g++ $(CFLAGS)
 
 EXE    = exe_Host_ALVEO_U200
 
