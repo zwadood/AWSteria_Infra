@@ -40,13 +40,13 @@ int getentropy (void *buf, size_t buflen) {
 
 // ================================================================
 
-int verbosity_AXI4_R = 0;
-int verbosity_AXI4_W = 0;
-int verbosity_AXI4L_R = 0;
-int verbosity_AXI4L_W = 0;
+int verbosity_AXI4_R = 1;
+int verbosity_AXI4_W = 1;
+int verbosity_AXI4L_R = 1;
+int verbosity_AXI4L_W = 1;
 
 bool test_DDR_A = false;
-bool test_DDR_B = false;
+bool test_DDR_B = true;
 bool test_DDR_C = false;
 bool test_DDR_D = false;
 
@@ -472,6 +472,9 @@ int main (int argc, char *argv [])
     fprintf (stdout, "\n");
     fprintf (stdout, "Performing tests ...\n");
 
+
+
+ddr_B_base = DDR_B_BASE;
     // ----------------
     if (test_DDR_A) test0 (ddr_A_base);
     if (test_DDR_B) test0 (ddr_B_base);
@@ -505,13 +508,13 @@ int main (int argc, char *argv [])
     test80 ();
 
     // ----------------
-    test90 (0);
+  //  test90 (0);
 
     // ----------------
-    test100 (0);
+  //  test100 (0);
 
     // ----------------
-    test990 ();
+//    test990 ();
 
     // ----------------------------------------------------------------
     // Final test stats
